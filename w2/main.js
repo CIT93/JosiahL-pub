@@ -12,4 +12,5 @@ const myTranspo = 5;
 const cfpTotal= +myFoodChoice+myGarbage+myH2O+myHomeSize+myHouseMembers+myPurchase+myReWaste+myTranspo;
 
 
+
 // 10. Write JS to update the rendered html (index.html) with total food 
