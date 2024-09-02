@@ -37,3 +37,6 @@ function determineHomeSizePts(sizeOfHouse) {
 //determineHouseHoldPts(3);
 determineHouseHoldPts(4);
 determineHomeSizePts("medium-sized");
+
+
+
