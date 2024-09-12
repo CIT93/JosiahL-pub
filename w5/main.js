@@ -75,20 +75,20 @@ function start(houseHoldMembers, houseSize) {
 	const houseHoldPTS = determineHouseHoldPts(houseHoldMembers);
 	const housesizePTS = determineHomeSizePts(houseSize);
 	const total = houseHoldPTS + housesizePTS;
-// const cfpObj = {
-// 	houseM: houseHoldMembers,
-// 	houseS: houseSize,
-// 	houseMPTS: houseHoldPTS,
-// 	houseSPTS: housesizePTS,
-// 	cfpTotal: total
-// }
-cfpData.push({
+const cfpObj = {
 	houseM: houseHoldMembers,
 	houseS: houseSize,
 	houseMPTS: houseHoldPTS,
 	houseSPTS: housesizePTS,
 	cfpTotal: total
-});
+}
+// cfpData.push({
+// 	houseM: houseHoldMembers,
+// 	houseS: houseSize,
+// 	houseMPTS: houseHoldPTS,
+// 	houseSPTS: housesizePTS,
+// 	cfpTotal: total
+// });
 
 displayOutObj(cfpObj);
 
