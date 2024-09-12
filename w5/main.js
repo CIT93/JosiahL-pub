@@ -26,16 +26,16 @@ console.log('global scope');
 //const numberInHousehold = 3;
 
 /*function determineHomeSizePts(sizeOfHouse) {
-    console.log("Inside block scope");
-    if (sizeOfHouse === "large") {
-        carbonFootprintPoints = carbonFootprintPoints + 10;
-    } else if (sizeOfHouse === "medium-sized") {
-        carbonFootprintPoints = carbonFootprintPoints + 7;
-    } else if (sizeOfHouse === "small") {
-        carbonFootprintPoints = carbonFootprintPoints + 4;
-    } else if (sizeOfHouse === "apartment") {
-        carbonFootprintPoints = carbonFootprintPoints + 2;
-    }
+	console.log("Inside block scope");
+	if (sizeOfHouse === "large") {
+		carbonFootprintPoints = carbonFootprintPoints + 10;
+	} else if (sizeOfHouse === "medium-sized") {
+		carbonFootprintPoints = carbonFootprintPoints + 7;
+	} else if (sizeOfHouse === "small") {
+		carbonFootprintPoints = carbonFootprintPoints + 4;
+	} else if (sizeOfHouse === "apartment") {
+		carbonFootprintPoints = carbonFootprintPoints + 2;
+	}
     
 }*/
 
@@ -60,42 +60,63 @@ function determineHomeSizePts(sizeOfHouse) {
 	return housesizePoints;
 }
 
+function displayOutObj(obj) {
+	console.log(obj);
+	const output = document.getElementById("output");
+	const newH2 = document.createElement("h2");
+	newH2.textContent = `Cardon Footprint ${obj.cfpTotal} , houseHoldPTS = ${obj.houseM} , houseSize = ${obj.houseS} , houseHoldMpts = ${obj.houseMPTS} , housesizePTS = ${obj.houseSPTS}`;  
+	output.appendChild(newH2);
+}
+
+
+
+
 function start(houseHoldMembers, houseSize) {
 	const houseHoldPTS = determineHouseHoldPts(houseHoldMembers);
 	const housesizePTS = determineHomeSizePts(houseSize);
 	const total = houseHoldPTS + housesizePTS;
-	cfpData.push([
-		houseHoldMembers,
-		houseSize,
-		houseHoldPTS,
-		housesizePTS,
-		total,
-	]);
-	displayOutput();
+// const cfpObj = {
+// 	houseM: houseHoldMembers,
+// 	houseS: houseSize,
+// 	houseMPTS: houseHoldPTS,
+// 	houseSPTS: housesizePTS,
+// 	cfpTotal: total
+// }
+cfpData.push({
+	houseM: houseHoldMembers,
+	houseS: houseSize,
+	houseMPTS: houseHoldPTS,
+	houseSPTS: housesizePTS,
+	cfpTotal: total
+});
+
+displayOutObj(cfpObj);
+
 }
 
-//Last code along for week 4 - does it make sense to have all of this in one array ?
-// const myInputs = [5, "apt"];
 
-function displayOutput() {
-	for (arr of cfpData) {
-		const output = document.getElementById("output");
-		const newH2 = document.createElement("h2");
-		newH2.textContent = `Cardon Footprint ${arr[4]}`;
-		const newH3 = document.createElement("h3");
-		newH3.textContent = `Based on the number in and size of home`
-		const newP = document.createElement("p");
-		newP.textContent = `This number is based on the number of people in the house of ${arr[0]} (score: ${arr[3]}),`;
-		newP.textContent += ` and a ${arr[1]} size of home (score:${arr[2]}).`;
-		output.appendChild(newH2);
-		output.appendChild(newH3);
-		output.appendChild(newP);
+ function displayOutput() {
+	for (obj of cfpData) {
+		console.log(obj)
+		 const output = document.getElementById("output");
+		 const newH2 = document.createElement("h2");
+		 newH2.textContent = `Cardon Footprint ${obj.cfpTotal}`;
+		// const newH3 = document.createElement("h3");
+		// newH3.textContent = `Based on the number in and size of home`
+		// const newP = document.createElement("p");
+		// newP.textContent = `This number is based on the number of people in the house of ${arr[0]} (score: ${arr[3]}),`;
+		// newP.textContent += ` and a ${arr[1]} size of home (score:${arr[2]}).`;
+		  output.appendChild(newH2);
+		//  output.appendChild(newH3);
+		//  output.appendChild(newP);
 	}
-}
+ }
 
 start(5, 'apt');
 start(4, 'large');
 start(3, 'medium');
+
+displayOutput()
 
 start(1, 'apt');
 start(2, 'apt');
@@ -125,10 +146,82 @@ start(2, 'large');
 
 //arrays
 
-const myArr = [1, 2, 3, 4, 5];
-console.log(myArr);
-console.log(myArr[1]);
-console.log(myArr[4]);
-console.log((myArr[0] = 10));
-console.log(myArr.push(1));
+//const myArr = [1, 2, 3, 4, 5];
 
+
+
+
+
+
+
+// for (initialization; condition; afterthought)
+// statement 
+
+for (let i = 0; i < 5; i++) {
+	// block scope 
+	console.log(i);
+}
+// how would you modify this code to count from 1 to 15?
+for (let i = 1; i <= 15; i++) {
+	console.log(i);
+}
+// how would you count backwards?
+for (let i = 6; i > 0; i--) {
+	console.log(i);
+}
+
+
+// standard for loop
+
+// function displayOutput() {
+//	for (let i = 0; i < cfpData.length; i++) {
+//		console.log(i)
+//		const output = document.getElementById("output");
+//		const newH2 = document.createElement("h2");
+//		newH2.textContent = `Cardon Footprint ${cfpData[i][4]}`;
+//		//const newH3 = document.createElement("h3");
+//		//newH3.textContent = `Based on the number in and size of home`
+//		//const newP = document.createElement("p");
+//		//newP.textContent = `This number is based on the number of people in the house of ${arr[0]} (score: ${arr[3]}),`;
+//		//newP.textContent += ` and a ${arr[1]} size of home (score:${arr[2]}).`;
+//		output.appendChild(newH2);
+//		//output.appendChild(newH3);
+//		//output.appendChild(newP);
+//	}
+   //}
+
+
+//displayOutput();
+
+
+//object coding challenge - refactor teh start to store the data in objective instead of an array. 
+
+
+// Intro to Object 
+
+const myArr = [];
+const myObj = {
+	cfpTotal: 18,
+	houseSize: "small",
+	displayOutput: function () {
+		console.log("this is a method call")
+		console.log(this.houseSize);
+		//	console.log(myObj.cfpTotal);
+	}
+};
+//console.log(myObj.cfpTotal);
+//console.log(myObj["houseSize"]);
+myObj.displayOutput()
+
+
+
+
+
+
+
+//displayOutput();
+//console.log(myArr);
+//console.log(myArr[1]);
+//console.log(myArr[4]);
+//console.log((myArr[0] = 10));
+//console.log(myArr.push(1));
