@@ -102,8 +102,13 @@ function displayOutput() {
 		const newH2 = document.createElement("h2");
 		newH2.textContent = `Cardon Footprint ${obj.cfpTotal}`;
 		const newH3 = document.createElement("h3");
+		const firstname = document.createElement("h1");
+		firstname.textContent = `firstname ${obj.firstname}`;
 		newH3.textContent = `Based on  number in and size of home`
+		const lastname = document.createElement("h2");
+		lastname.textContent = `lastname ${obj.lastname}`;
 		const newP = document.createElement("p");
+
 		newP.textContent = `This number is based on the number of people in the house of ${obj.houseM} (score: ${obj.houseMPTS}),`;
 		newP.textContent += ` and a ${obj.houseS} size of home (score:${obj.houseSPTS}).`;
 		output.appendChild(newH2);
