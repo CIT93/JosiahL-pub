@@ -64,16 +64,16 @@ function determineHomeSizePts(sizeOfHouse) {
 
 function displayOutObj(obj) {
 	console.log(obj);
-	const output = document.getElementById("output");
+	//const output = document.getElementById("output");
 	const newH2 = document.createElement("h2");
-	newH2.textContent = `Cardon Footprint ${obj.cfpTotal} , houseHoldPTS = ${obj.houseM} , houseSize = ${obj.houseS} , houseHoldMpts = ${obj.houseMPTS} , housesizePTS = ${obj.houseSPTS}`;
+	newH2.textContent = `Cardon Footprint ${obj.cfpTotal} , houseHoldPTS = ${obj.houseM} , houseSize = ${obj.houseS} , houseHoldMpts = ${obj.houseMPTS} , firstname = ${obj.firstname},lastname = ${obj.lastname}`
 	output.appendChild(newH2);
 }
 
 
 
 
-function start(houseHoldMembers, houseSize) {
+function start(houseHoldMembers, houseSize, firstname , lastname) {
 	const houseHoldPTS = determineHouseHoldPts(houseHoldMembers);
 	const housesizePTS = determineHomeSizePts(houseSize);
 	const total = houseHoldPTS + housesizePTS;
@@ -82,6 +82,8 @@ function start(houseHoldMembers, houseSize) {
 		houseS: houseSize,
 		houseMPTS: houseHoldPTS,
 		houseSPTS: housesizePTS,
+		firstname: firstname,
+		lastname: lastname,
 		cfpTotal: total
 	}
 	// cfpData.push({
@@ -98,6 +100,7 @@ function start(houseHoldMembers, houseSize) {
 
 
 function displayOutput() {
+	console.log(cfpData)
 	for (obj of cfpData) {
 		const newH2 = document.createElement("h2");
 		newH2.textContent = `Cardon Footprint ${obj.cfpTotal}`;
@@ -125,13 +128,13 @@ function displayOutput() {
 
 FORM.addEventListener('submit', function (e) {
 	e.preventDefault();
-	const firstName = FORM.firstname.value;
-	const lastName = FORM.lastname.value;
+	output.innerHTML = "";
+	const firstname = FORM.firstname.value;
+	const lastname = FORM.lastname.value;
 	const houseMembers = parseInt(FORM.housem.value);
 	const houseSize = FORM.houses.value;
-	start(houseMembers, houseSize);
-	output.innerHTML = "";
-	displayOutput();
+	start(houseMembers, houseSize,firstname,lastname);
+	//displayOutput();
 	FORM.reset();
 })
 
@@ -164,6 +167,7 @@ start(7, 'medium');
 start(1, 'large');
 start(2, 'large');
 displayOutput()
+
 // where do we put the console.log for house size
 
 //arrays
