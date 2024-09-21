@@ -73,17 +73,17 @@ function displayOutObj(obj) {
 
 
 
-function start(houseHoldMembers, houseSize, firstname , lastname) {
+function start(firstname, lastname, houseHoldMembers, houseSize,) {
 	const houseHoldPTS = determineHouseHoldPts(houseHoldMembers);
 	const housesizePTS = determineHomeSizePts(houseSize);
 	const total = houseHoldPTS + housesizePTS;
 	const cfpObj = {
+		firstname: firstname,
+		lastname: lastname,
 		houseM: houseHoldMembers,
 		houseS: houseSize,
 		houseMPTS: houseHoldPTS,
 		houseSPTS: housesizePTS,
-		firstname: firstname,
-		lastname: lastname,
 		cfpTotal: total
 	}
 	// cfpData.push({
@@ -133,7 +133,7 @@ FORM.addEventListener('submit', function (e) {
 	const lastname = FORM.lastname.value;
 	const houseMembers = parseInt(FORM.housem.value);
 	const houseSize = FORM.houses.value;
-	start(houseMembers, houseSize,firstname,lastname);
+	start(firstname,lastname,houseMembers, houseSize,);
 	//displayOutput();
 	FORM.reset();
 })
