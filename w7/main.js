@@ -1,9 +1,13 @@
 import { renderTbl} from "./render.js";
-import {determineHouseHoldPts,determineHomeSizePts,displayOutObj } from "./carbon.js";
+import {determineHouseHoldPts,determineHomeSizePts } from "./carbon.js";
 
 const FORM = document.getElementById("form")
 const output = document.getElementById("output");
+const TBL = document.getElementById("tab-data")
 const cfpData = [];
+
+console.log("top of file")
+
 
 // function determineHouseHoldPts(numberInHousehold) {
 // 	console.log('Inside block scope');
@@ -76,11 +80,13 @@ const cfpData = [];
 
 
 
-function start(first, lastname, houseHoldMembers, housesize) {
+function start(firstname, lastname, houseHoldMembers, housesize) {
 	const houseHoldPTS = determineHouseHoldPts(houseHoldMembers);
 	const housesizePTS = determineHomeSizePts(housesize);
 	const total = houseHoldPTS + housesizePTS;
 	cfpData.push({
+		firstName: firstname,
+		lastName: lastname,
 		houseM: houseHoldMembers,
 		houseS: housesize,
 		houseMPTS: houseHoldPTS,
@@ -98,9 +104,9 @@ FORM.addEventListener('submit', function (e){
 	const lastName = FORM.lastname.value;
 	const houseMembers = parseInt(FORM.housem.value);
 	const houseSize = FORM.houses.value;
-	start(firstName, lastName, houseMembers, houseSize);
+	start(houseMembers, houseSize, firstName, lastName);
 	output.innerHTML = "";
-	//displayOutput();
+	 /*  displayOutput(); */
 	renderTbl(cfpData);
 	FORM.reset();
 })
