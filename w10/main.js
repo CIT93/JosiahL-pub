@@ -1,44 +1,25 @@
 import { renderTbl} from "./render.js";
-import {determineHouseHoldPts,determineHomeSizePts} from "./cfp.js";
+import { determineHouseSizePts, determineHouseHoldPts } from "./cfp.js";
 import{FORM, FNAME, LNAME, SUBMIT} from "./global.js"
 import {saveLS, cfpData} from "./storage.js"
 
-const start = (first, last, houseHoldMembers, housesize) => {
-	const houseHoldPTS = determineHouseHoldPts(houseHoldMembers);
-	const housesizePTS = determineHomeSizePts(housesize);
-	const total = houseHoldPTS + housesizePTS;
-	cfpData.push({
-		firstName: first,
-		lastname: last,
-		houseM: houseHoldMembers,
-		houseS: housesize,
-		houseMPTS: houseHoldPTS,
-		houseSPTS: housesizePTS,
-		cfpTotal: total,
-	});
+
+const start = (houseHoldMembers, houseSize) => {
+  const houseHoldPTS = determineHouseHoldPts(houseHoldMembers);
+  const houseHoldSize = determineHouseSizePts(houseSize);
+  const total = houseHoldPTS + houseHoldSize;
+  const firstName = FORM.firstname.value;
+  const lastName = FORM.lastname.value;
+  cfpData.push({
+	firstN: firstName,
+	hMem: houseHoldMembers,
+	hSize: houseSize,
+	hHPTS: houseHoldPTS,
+	hHSize: houseHoldSize,
+	hTotal: total,
+	lastN: lastName
+  });
 }
-
-renderTbl(cfpData);
-
-// function to validate a single field
-const validateField = event => {
-	const field = event.target.value;
-	const fieldID = event.target.id;
-	const fieldError = document.getElementById(`${fieldID}Error`);
-
-	if (field === '') {
-		fieldError.textContent = `${fieldID} is required`;
-		event.target.classList.remove('invalid');
-		}else {
-			fieldError.textContent = '';
-			event.target.classList.remove('invalid');
-		}
-}
-	
-// Attach blur event listeners 
-FNAME.addEventListener (`blur`, validateField);
-LNAME.addEventListener (`blur`, validateField);
-
 
 FORM.addEventListener('submit', e => {
 	e.preventDefault();
@@ -48,10 +29,33 @@ FORM.addEventListener('submit', e => {
 	saveLS(cfpData)
 	renderTbl(cfpData);
 	FORM.reset();
-}else{
+}	
+else {
 	SUBMIT.textContent + "form requires first name and last name";
 }
 });
+
+
+const validateField = event => {
+	const field = event.target.value;
+	const fieldID = event.target.id;
+	const fieldError = document.getElementById(`${fieldID}Error`);
+	if (field === '') {
+		fieldError.textContent = `${fieldID} is required`;
+		event.target.classList.remove('invalid');
+		}else {
+			fieldError.textContent = '';
+			event.target.classList.remove('invalid');
+		}
+};
+	
+
+FNAME.addEventListener('blur', validateField);
+LNAME.addEventListener('blur', validateField);
+
+
+
+
 
 //rest operator
 // const add2 = function(...a) {

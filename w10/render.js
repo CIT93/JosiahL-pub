@@ -1,20 +1,20 @@
 import { FORM, TBL } from "./global.js"
 import { saveLS } from "./storage.js";
 
-const renderTblHeading = function() {
+const renderTblHead = () => {
 	const table = document.createElement("table");
-	const thead = document.createElement("thead");
-	const tr = document.createElement("tr");
-	const headingTextArr = ["Name", "HouseHold", "HouseSize", "Footprint", "Actions"];
-	headingTextArr.forEach(function (text) {
+	  const thead = document.createElement("thead");
+	  const tr = document.createElement("tr");
+	  const headingTextArr = ["Name", "HouseHold", "HouseSize", "Footprint", "Actions"];
+	  headingTextArr.forEach(function(text) {
 		const th = document.createElement("th");
 		th.textContent = text;
 		tr.appendChild(th);
-	});
-	thead.appendChild(tr);
-	// tr.appendChild(td);
-	return table
-}
+	  });
+	  thead.appendChild(tr);
+	  table.appendChild(thead);
+	  return table
+  }
 
 const onUpdate = function(index, data) {
 	data.splice(index, 1);
@@ -44,34 +44,33 @@ const renderTblBtn = function(obj, index, data) {
 }
 
 
-const renderTblBody = function(data) {
+const renderTblRow = data => {
 	const tbody = document.createElement("tbody")
-	data.forEach(function (obj, index) {
-		console.log(index)
+	  data.forEach(function(obj, index) {
+		console.log(index);
 		const tr = document.createElement("tr");
-		for (const [key, value] of Object.entries(obj)) {
-			if (key === "lastName" || key === "houseMPTS" || key === "houseSMPTS") {
-				const td = document.createElement("td");
-				td.textContent = value;
-				tr.appendChild(td);
-			}
-		}
-		const td = renderTblBtn(obj, index, data);
-		tr.appendChild(td);
-		tbody.appendChild(tr)
-	});
-	return tbody;
-}
-
-const renderTbl = function(data) {
-	TBL.innerHTML = "";
-	if (data.length !== 0) {
-		const table = renderTblHeading();
-		const tbody = renderTblBody(data);
-		table.appendChild(tbody);
-		TBL.appendChild(table);
+		for(const [key, value] of Object.entries(obj)){
+		  if (key === "firstN" || key === "hMem" || key === "hSize" || key === "hTotal") {
+			const td = document.createElement("td");
+			td.textContent = value;
+			tr.appendChild(td);
+		  }
+	  };
+	  const td = renderTblBttns(index, data);
+	  tr.appendChild(td);
+	  tbody.appendChild(tr);
+	  });
+	return tbody
 	}
 
-}
-
-export { renderTbl };
+	const renderTbl = data => {
+		TBL.innerHTML = "";
+		if (data.length !== 0) {
+		  const table = renderTblHead();
+		  const tbody = renderTblRow(data);
+		  table.appendChild(tbody);
+		  TBL.appendChild(table);
+		}
+	  }
+	
+	  export {renderTbl};

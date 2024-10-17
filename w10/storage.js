@@ -1,17 +1,17 @@
-const saveLS= function(cfpData) {
-const serializedArr = JSON.stringify(cfpData);
-localStorage.setItem("cfp", serializedArr);
-};
+const saveLS = (...arr) => {
+    const serializedArr = JSON.stringify(...arr);
+    localStorage.setItem("cfp", serializedArr);
+}
 
-const getLS =  function() {
-    const retrievedArr = localStorage.getItem("cfp")
-    if(retrievedArr !== null) {
-        return JSON.parse(retrievedArr);
-    }else {
+const getLS = () => {
+    const retrieveArr = localStorage.getItem("cfp");
+    if (retrieveArr !== null) {
+        return JSON.parse(retrieveArr);
+    } else {
         return [];
     }
-};
+}
 
-const cfpData= getLS();
+const cfpData = getLS();
 
 export {cfpData, saveLS, getLS};
