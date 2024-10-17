@@ -21,20 +21,21 @@ const start = (houseHoldMembers, houseSize) => {
   });
 }
 
-FORM.addEventListener('submit', e => {
+
+
+FORM.addEventListener("submit", e => {
 	e.preventDefault();
 	if (FNAME.value !== '' && LNAME.value !== '') {
-	SUBMIT.textContent = '';
-	start(FNAME.value, LNAME.value, parseInt(FORM.housem.value), FORM.houses.value);
-	saveLS(cfpData)
-	renderTbl(cfpData);
-	FORM.reset();
-}	
-else {
-	SUBMIT.textContent + "form requires first name and last name";
-}
-});
-
+	  SUBMIT.textContent = "";
+	  start(parseInt(FORM.housem.value), FORM.houses.value, FNAME.value, LNAME.value);
+	  saveLS(cfpData);
+	  renderTbl(cfpData); 
+	  FORM.reset();
+	}
+	else {
+	  SUBMIT.textContent = "Form requires first and last name";
+	}
+  })
 
 const validateField = event => {
 	const field = event.target.value;

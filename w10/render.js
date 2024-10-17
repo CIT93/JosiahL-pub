@@ -22,26 +22,26 @@ const onUpdate = function(index, data) {
 	renderTbl(data);
 }
 
-const renderTblBtn = function(obj, index, data) {
-	const td = document.createElement("td")
-	const btnEdit = document.createElement("button");
-	const btnDel = document.createElement("button");
-	btnEdit.textContent = "Edit";
-	btnDel.textContent = "Del";
-	td.appendChild(btnEdit);
-	td.appendChild(btnDel);
-	btnDel.addEventListener(`click`, function (e) {
-		onUpdate(index, data);
+const renderTblBttns = (index, data) => {
+    const td = document.createElement("td");
+    const btnEdit = document.createElement("button");
+    btnEdit.textContent = "Edit"
+    const btnDel = document.createElement("button");
+    btnDel.textContent = "Del"
+    td.appendChild(btnEdit);
+    td.appendChild(btnDel);
+    btnDel.addEventListener("click", e => {
+    onUpdate(index, data);
+    })
+    btnEdit.addEventListener("click", e => {
+		FORM[1].value = String(data[index].firstN);
+		FORM[2].value = String(data[index].lastN);
+		FORM[3].value = String(data[index].hMem);
+		FORM[4].value = String(data[index].hSize);
+		onUpdate(index, data); 
 	})
-	btnEdit.addEventListener(`click`, function (e) {
-		FORM[1].value = obj.firstName;
-		FORM[2].value = obj.lastName;
-		FORM[3].value = obj.houseM;
-		FORM[4].value = obj.houseS;
-		onUpdate(index, data);
-	})
-	return td;
-}
+    return td
+  }
 
 
 const renderTblRow = data => {
