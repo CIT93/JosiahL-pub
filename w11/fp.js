@@ -1,47 +1,57 @@
 class FP {
-    constructor(first, last, houseMembers, houseSize, ) {
-      this.first = first
-      this.last = last
-      this.houseMembers = houseMembers
-      this.houseSize = houseSize
+  constructor(first, last, houseMembers, houseSize, foodType)  {
+      this.first = first;
+      this.last = last;
+      this.houseMembers = houseMembers;
+      this.houseSize = houseSize;
+      this.foodType = foodType;
       this.houseHoldPoints();
       this.houseSizePoints();
-      this.calculateTotal();
-    }
-  
-    houseHoldPoints() {
+      this.foodPoints();
+      this.total();
+  }
+  houseHoldPoints() {
       if (this.houseMembers === 1) {
-        this.houseHoldPointsValue = 14;
-      } else if (this.houseMembers === 2) {
-        this.houseHoldPointsValue = 12;
-      } else if (this.houseMembers === 3) {
-        this.houseHoldPointsValue = 10;
-      } else if (this.houseMembers === 4) {
-        this.houseHoldPointsValue = 8;
-      } else if (this.houseMembers === 5) {
-        this.houseHoldPointsValue = 6;
-      } else if (this.houseMembers === 6) {
-        this.houseHoldPointsValue = 4;
-      } else if (this.houseMembers >= 7) {
-        this.houseHoldPointsValue = 2;
+          this.houseHoldPoints = 14;
+        } else if (this.houseMembers === 2) {
+          this.houseHoldPoints = 12;
+        } else if (this.houseMembers === 3) {
+          this.houseHoldPoints = 10;
+        } else if (this.houseMembers === 4) {
+          this.houseHoldPoints = 8;
+        } else if (this.houseMembers === 5) {
+          this.houseHoldPoints = 6;
+        } else if (this.houseMembers === 6) {
+          this.houseHoldPoints = 4;
+        } else if (this.houseMembers >= 7) {
+          this.houseHoldPoints = 2;
       }
-    }
-  
-    houseSizePoints() {
+  }
+  houseSizePoints() {
       if (this.houseSize === "large") {
-        this.houseSizePointsValue = 10;
-      } else if (this.houseSize === "medium") {
-        this.houseSizePointsValue = 7;
-      } else if (this.houseSize === "small") {
-        this.houseSizePointsValue = 4;
-      } else if (this.houseSize === "apt") {
-        this.houseSizePointsValue = 2;
-      }
-    }
-  
-    calculateTotal() {
-      this.total = this.houseHoldPointsValue + this.houseSizePointsValue;
+          this.houseSizePoints = 10;
+        } else if (this.houseSize === "medium") {
+          this.houseSizePoints = 7;
+        } else if (this.houseSize === "small") {
+          this.houseSizePoints = 4;
+        } else if (this.houseSize === "apt") {
+          this.houseSizePoints = 2;
+        }
+  }
+  foodPoints() {
+    if (this.foodType === "Meat") {
+      this.foodPoints = 10;
+    }  else if (this.foodType === "fewTimesMeat") {
+      this.foodPoints = 8;
+    } else if (this.foodType === "Vegan") {
+      this.foodPoints = 4;
+    } else if (this.foodType === "veganOrWild") {
+      this.foodPoints = 2;
     }
   }
-  
-  export { FP }
+  total() {
+      this.total = this.houseHoldPoints + this.houseSizePoints + this.foodPoints;
+  }
+}
+
+export {FP}

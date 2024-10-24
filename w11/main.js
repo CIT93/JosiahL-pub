@@ -1,60 +1,42 @@
+import { FORM, FNAME, LNAME, SUBMIT } from "./global.js";
 import { renderTbl} from "./render.js";
-import { determineHouseSizePts, determineHouseHoldPts } from "./cfp.js";
-import{FORM, FNAME, LNAME, SUBMIT} from "./global.js"
-import {saveLS, cfpData} from "./storage.js"
+import { determineHouseSizePts, determineHouseHoldPts } from "./calculate.js";
+import { cfpData, saveLS } from "./storage.js";
 import { FP } from "./fp.js";
 
-
-const start = (...i) => {
-	console.log (i)
-  const houseHoldPTS = determineHouseHoldPts(i[2]);
-  const houseHoldSize = determineHouseSizePts(i[3]);
-  const total = houseHoldPTS + houseHoldSize;
-  cfpData.push({
-	firstN: i[0],
-	lastN: i[1],
-	hMem: i[2],
-	hSize: i[3],
-	hHPTS: houseHoldPTS,
-	hHSize: houseHoldSize,
-	hTotal: total,
-  });
-}
-
-
-
 FORM.addEventListener("submit", e => {
-	e.preventDefault();
-	if (FNAME.value !== '' && LNAME.value !== '') {
-	  SUBMIT.textContent = "";
-	  //start( FNAME.value, LNAME.value, parseInt(FORM.housem.value) , FORM.houses.value );
-	  const fpObj = new FP(FNAME.value, LNAME.value, parseInt(FORM.housem.value) , FORM.houses.value );
-	//   fpObj.houseHoldPoints();
-	//   fpObj.houseSizePoints();
-	cfpData.push(fpObj)
-	  saveLS(cfpData);
-	  renderTbl(cfpData); 
-	  FORM.reset();
-	}
-	else {
-	  SUBMIT.textContent = "Form requires first and last name";
-	}
-  })
+  e.preventDefault();
+  if (FNAME.value !== '' && LNAME.value !== '') {
+    SUBMIT.textContent = "";
+    const fpObj = new FP(FNAME.value, LNAME.value, parseInt(FORM.housem.value), FORM.houses.value, FORM.food.value);
+    cfpData.push(fpObj);
+    saveLS(cfpData);
+    renderTbl(cfpData); 
+    FORM.reset();
+  }
+  else {
+    SUBMIT.textContent = "Form requires first and last name";
+  }
+})
+
 
 const validateField = event => {
-	const field = event.target.value;
-	const fieldID = event.target.id;
-	const fieldError = document.getElementById(`${fieldID}Error`);
-	if (field === '') {
-		fieldError.textContent = `${fieldID} is required`;
-		event.target.classList.remove('invalid');
-		}else {
-			fieldError.textContent = '';
-			event.target.classList.remove('invalid');
-		}
+  const field = event.target.value;
+  const fieldId = event.target.id;
+  const fieldError = document.getElementById(`${fieldId}Error`);
+  if (field === '') {
+      fieldError.textContent = `${fieldId} is required`;
+      event.target.classList.add('invalid');
+  } else {
+      fieldError.textContent = '';
+      event.target.classList.remove('invalid');
+  }
 };
-FNAME.addEventListener('blur', validateField);	
+
+FNAME.addEventListener('blur', validateField);
 LNAME.addEventListener('blur', validateField);
+
+renderTbl(cfpData);
 
 
 
