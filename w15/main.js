@@ -1,3 +1,6 @@
+
+
+
 const getPosts = async () => {
   try {
     const request = await fetch(url);
@@ -13,23 +16,25 @@ const getPosts = async () => {
 };
 
 const displayPosts = posts => {
-  const filterPostsArr = posts.filter(post => post.userId === 1 && post.title.length > 10);
+  // filter HOF
+  const filterPostsArr = posts.filter(post => post.userId === 1 && post.title.length > 17);
   console.log(filterPostsArr);
-  // console.log(posts);
+
+  // map
+  const mappedPostsArr = filterPostsArr.map(post => {
+    return post.body.length;
+  });
+  console.log(mappedPostsArr);
+
+  //console.log(posts);
+
   // forEach
   // posts.forEach(post => {
   //   console.log(post);
-  // })
+  // });
 };
+
 
 const onError = err => {
-  console.log(`Error ${err}`);
-};
-
-const onSuccess = async posts => {
-  displayPosts(posts);
-};
-
-const start = () => {
-  getPosts();
-};
+  console.log('Error ${err}');
+}
