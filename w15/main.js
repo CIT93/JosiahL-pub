@@ -29,7 +29,8 @@ const displayPosts = posts => {
 const total = mappedPostsArr.reduce((sum, len) => sum +len, 0)
 console.log(total)
 
-const avg =
+const avg = total/mappedPostsArr.length;
+console.log(avg)
 // how would you calculate avg?
 
 
