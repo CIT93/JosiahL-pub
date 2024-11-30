@@ -3,34 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Week 16 - Carbon Footprint</title>
-    <link rel="stylesheet" href="style.css">
-    <script type="module" defer>
-        document.addEventListener('DOMContentLoaded', () => {
-            const form = document.getElementById('form');
-            const outputDiv = document.getElementById('output');
-
-            form.addEventListener('submit', (event) => {
-                event.preventDefault(); // Prevent default submission
-
-                // Gather form data
-                const formData = new FormData(form);
-                const data = Object.fromEntries(formData.entries());
-
-                // Display the output (for demonstration purposes)
-                outputDiv.innerHTML = `
-                    <h2>Submission Details:</h2>
-                    <p>First Name: ${data.firstname}</p>
-                    <p>Last Name: ${data.lastname}</p>
-                    <p>Household Members: ${data.housem}</p>
-                    <p>Home Size: ${data.houses}</p>
-                    <p>Food Choices: ${data.food}</p>
-                    <p>Food Sources: ${data.foods}</p>
-                    <p>Water Consumption: ${data.water}</p>
-                `;
-            });
-        });
-    </script>
+    <title>Week 16 - Carbon Footprint </title>
+    <script type="module" defer src="main.js"></script>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
     <form id="form">
@@ -38,14 +13,14 @@
             <legend>Calculating Your Carbon Footprint Points</legend>
             <div>
                 <label>First Name:</label>
-                <input type="text" id="firstName" name="firstname" maxlength="20" required>
+                <input type="text" id="firstName" name="firstname" maxlength="20">
                 <span id="firstNameError" class="error" role="alert"></span>
             </div>
             <div>
                 <label>Last Name:</label>
-                <input type="text" id="lastName" name="lastname" maxlength="20" required>
+                <input type="text" id="lastName" name="lastname" maxlength="20">
                 <span id="lastNameError" class="error" role="alert"></span>
-            </div>
+            </div> 
             <div>
                 <label>Count the members of your household:</label>
                 <input type="number" name="housem" min="1" max="6" required>
@@ -71,23 +46,38 @@
                 </select>
             </div>
             <div>
-                <label>Evaluate your food sources:</label>
-                <select name="foods" required>
-                    <option value="">---Food Sources---</option>
-                    <option value="conFood">Prepackaged convenience food</option>
-                    <option value="balFood">Balance of fresh and convenience food</option>
-                    <option value="freshFood">Fresh, locally grown, or hunted food</option>
-                </select>
+                    <label>Evaluate your food sources:</label>
+                    <select name="foods" required>
+                        <option value="">---Food Sources---</option>
+                        <option value="conFood">Prepackaged convenience food</option>
+                        <option value="balFood">Balance of fresh and convenience food</option>
+                        <option value="freshFood">Fresh, locally grown, or hunted food</option>
+                    </select>
             </div>
             <div>
                 <label>Examine your water consumption:</label>
                 <select name="water" id="water" required>
-                    <option value="">---How many times do you run your dishwasher or washing machine?---</option>
-                    <option value="3">More than 9 times per week</option>
-                    <option value="2">Between 4 and 9 times per week</option>
-                    <option value="1">Between 1 and 3 times per week</option>
-                    <option value="0">Don't have a dishwasher</option>
+                        <option value="">---How many times do you run your dishwasher or washing machine?---</option>
+                        <option value="3">More than 9 times per week</option>
+                        <option value="2">Between 4 and 9 times per week</option>                
+                        <option value="1">Between 1 and 3 times per week</option>
+                        <option value="0">Don't have a dishwasher</option>
                 </select>
+            </div>
+            <div>
+                    <label>Do you have both a dishwasher and a washing machine?</label>
+                    <input type="checkbox" id="dishWash" checked>
+            </div>
+            <div>
+                    <label>Determine how many household purchases you make each year:</label>
+                    <select name="purchase" id="purchase" required>
+                            <option value="">---How many new household purchases do you make in a year?---</option>
+                            <option value="10">More than 7 new pieces of furniture, electronics, or other gadgets</option>
+                            <option value="8">Between 5 and 7 items</option>
+                            <option value="6">Between 3 and 5 items</option>
+                            <option value="4">Less than 3 items</option>
+                            <option value="2">Almost nothing or only secondhand items</option>
+                    </select>
             </div>
             <button type="submit">Submit</button>
             <span id="submitError" class="error"></span>
@@ -96,4 +86,5 @@
     <div id="output">
     </div>
     <div id="tab-data"></div>
-</body
+</body>
+</html>
